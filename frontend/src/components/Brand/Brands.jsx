@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/Brands.css";
+import "../../css/Brands.css";
 import BrandItem from "./BrandItem";
 
 function Brands() {

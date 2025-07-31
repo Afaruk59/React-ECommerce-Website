@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/CampaignSingle.css";
+import "../../css/CampaignSingle.css";
 
 function CampaignSingle() {
   return (

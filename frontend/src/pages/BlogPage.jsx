@@ -1,17 +1,16 @@
 import React from "react";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
-import Contact from "../components/Contact";
-import "../css/Contact.css";
+import Blogs from "../components/Blog/Blogs";
 
-function ContactPage() {
+function BlogPage() {
   return (
     <>
       <Header />
-      <Contact />
+      <Blogs />
       <Footer />
     </>
   );
 }
 
-export default ContactPage;
+export default BlogPage;

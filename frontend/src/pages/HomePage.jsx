@@ -2,12 +2,12 @@ import React from "react";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import Slider from "../components/Slider";
-import Categories from "../components/Categories";
-import Products from "../components/Products";
-import Campaigns from "../components/Campaigns";
-import Blogs from "../components/Blogs";
-import Brands from "../components/Brands";
-import CampaignSingle from "../components/CampaignSingle";
+import Categories from "../components/Category/Categories";
+import Products from "../components/Product/Products";
+import Campaigns from "../components/Campaign/Campaigns";
+import Blogs from "../components/Blog/Blogs";
+import Brands from "../components/Brand/Brands";
+import CampaignSingle from "../components/Campaign/CampaignSingle";
 
 function HomePage() {
   return (

@@ -1,17 +1,16 @@
 import React from "react";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
-import Contact from "../components/Contact";
-import "../css/Contact.css";
+import Auth from "../components/Auth/Auth";
 
-function ContactPage() {
+function AuthPage() {
   return (
     <>
       <Header />
-      <Contact />
+      <Auth />
       <Footer />
     </>
   );
 }
 
-export default ContactPage;
+export default AuthPage;

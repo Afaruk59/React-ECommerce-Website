@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/Categories.css";
+import "../../css/Categories.css";
 import CategoryItem from "./CategoryItem";
 
 function Categories() {

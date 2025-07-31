@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/Campaigns.css";
+import "../../css/Campaigns.css";
 import CampaignItem from "./CampaignItem";
 
 function Campaigns() {

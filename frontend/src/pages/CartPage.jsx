@@ -1,17 +1,15 @@
 import React from "react";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
-import Contact from "../components/Contact";
-import "../css/Contact.css";
-
-function ContactPage() {
+import Cart from "../components/Cart/Cart";
+function CartPage() {
   return (
     <>
       <Header />
-      <Contact />
+      <Cart />
       <Footer />
     </>
   );
 }
 
-export default ContactPage;
+export default CartPage;

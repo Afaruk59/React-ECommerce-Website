@@ -1,10 +1,10 @@
 import React from "react";
-import "../css/Blogs.css";
+import "../../css/Blogs.css";
 import BlogItem from "./BlogItem";
 
 function Blogs() {
   return (
-    <section className="blogs">
+    <section className="blogs blog-page">
       <div className="container">
         <div className="section-title">
           <h2>From Our Blog</h2>

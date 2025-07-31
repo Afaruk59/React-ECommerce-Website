@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/CategoryItem.css";
+import "../../css/CategoryItem.css";
 function CategoryItem() {
   return (
     <li className="category-item">
