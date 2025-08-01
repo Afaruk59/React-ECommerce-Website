@@ -12,7 +12,6 @@ import CampaignSingle from "../components/Campaign/CampaignSingle";
 function HomePage() {
   return (
     <>
-      <Header />
       <Slider />
       <Categories />
       <Products />
@@ -20,7 +19,6 @@ function HomePage() {
       <Blogs />
       <Brands />
       <CampaignSingle />
-      <Footer />
     </>
   );
 }

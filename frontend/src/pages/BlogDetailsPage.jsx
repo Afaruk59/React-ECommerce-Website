@@ -6,7 +6,6 @@ import Reviews from "../components/Reviews/Reviews";
 function BlogDetailsPage() {
   return (
     <>
-      <Header />
       <section className="single-blog">
         <div className="container">
           <article>
@@ -116,7 +115,6 @@ function BlogDetailsPage() {
           <Reviews />
         </div>
       </section>
-      <Footer />
     </>
   );
 }

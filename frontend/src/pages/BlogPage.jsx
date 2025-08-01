@@ -6,9 +6,7 @@ import Blogs from "../components/Blog/Blogs";
 function BlogPage() {
   return (
     <>
-      <Header />
       <Blogs />
-      <Footer />
     </>
   );
 }

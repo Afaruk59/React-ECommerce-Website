@@ -1,13 +1,14 @@
 import React from "react";
+import ProductDetails from "../components/Product/ProductDetails";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
-import Cart from "../components/Cart/Cart";
-function CartPage() {
+
+function ProductDetailsPage() {
   return (
     <>
-      <Cart />
+      <ProductDetails />
     </>
   );
 }
 
-export default CartPage;
+export default ProductDetailsPage;

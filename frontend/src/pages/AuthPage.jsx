@@ -6,9 +6,7 @@ import Auth from "../components/Auth/Auth";
 function AuthPage() {
   return (
     <>
-      <Header />
       <Auth />
-      <Footer />
     </>
   );
 }

@@ -7,9 +7,7 @@ import "../css/Contact.css";
 function ContactPage() {
   return (
     <>
-      <Header />
       <Contact />
-      <Footer />
     </>
   );
 }

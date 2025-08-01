@@ -8,12 +8,10 @@ import Header from "../components/layout/Header";
 function ShopPage() {
   return (
     <>
-      <Header />
       <Categories />
       <Products />
       <CampaignSingle />
       <Products />
-      <Footer />
     </>
   );
 }
