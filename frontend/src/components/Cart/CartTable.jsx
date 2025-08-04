@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../css/Cart.css";
 import CartItem from "./CartItem";
+import CartContext from "../../context/CartProvider.jsx";
 function CartTable() {
+  const { cart } = useContext(CartContext);
   return (
-    <table className="shop-table">
+    <table className="shop-table" style={{ marginLeft: "10px", width: "100%" }}>
       <thead>
         <tr>
           <th className="product-thumbnail">&nbsp;</th>
@@ -15,10 +17,9 @@ function CartTable() {
         </tr>
       </thead>
       <tbody className="cart-wrapper">
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
+        {cart.map((item) => (
+          <CartItem key={item.id} item={item} />
+        ))}
       </tbody>
     </table>
   );

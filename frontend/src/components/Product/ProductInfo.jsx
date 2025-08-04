@@ -1,10 +1,12 @@
 import React from "react";
 import "../../css/ProductInfo.css";
+import products from "../../data.json";
 
-function ProductInfo() {
+function ProductInfo({ id }) {
+  const product = products.find((product) => product.id === parseInt(id));
   return (
     <div className="product-info">
-      <h1 className="product-title">Ridley High Waist</h1>
+      <h1 className="product-title">{product.name}</h1>
       <div className="product-review">
         <ul className="product-star">
           <li>
@@ -26,12 +28,15 @@ function ProductInfo() {
         <span>2 reviews</span>
       </div>
       <div className="product-price">
-        <s className="old-price">$165</s>
-        <strong className="new-price">$100</strong>
+        <s className="old-price">${product.price.oldPrice.toFixed(2)}</s>
+        <strong className="new-price">
+          ${product.price.newPrice.toFixed(2)}
+        </strong>
       </div>
       <p className="product-description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis hic
+        autem aliquid fugit ipsum pariatur quibusdam doloremque? Aliquid,
+        consequatur ut?
       </p>
       <form className="variations-form">
         <div className="variations">

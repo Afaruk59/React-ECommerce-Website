@@ -1,7 +1,9 @@
 import React from "react";
-import "../../css/Breadcrumb.css";
+import "../../../css/Breadcrumb.css";
+import products from "../../../data.json";
 
-function Breadcrumb() {
+function Breadcrumb({ id }) {
+  const product = products.find((product) => product.id === parseInt(id));
   return (
     <div className="single-topbar">
       <nav className="breadcrumb">
@@ -15,7 +17,7 @@ function Breadcrumb() {
           <li>
             <a href="#">Pants</a>
           </li>
-          <li>Basic Colored Sweatpants With Elastic Hems</li>
+          <li>{product?.name || "Ürün Bulunamadı"}</li>
         </ul>
       </nav>
     </div>

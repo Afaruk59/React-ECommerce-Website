@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../css/Header.css";
+import CartContext from "../../context/CartProvider.jsx";
 
 function Header({ handleOpen }) {
+  const { cart } = useContext(CartContext);
   return (
     <header>
       <div className="global-notification">
@@ -9,7 +11,7 @@ function Header({ handleOpen }) {
           <p>
             SUMMER SALE FOR ALL SWIM SUITS AND FREE EXPRESS INTERNATIONAL
             DELIVERY - OFF 50%!
-            <a href="shop.html"> SHOP NOW</a>
+            <a href="/shop"> SHOP NOW</a>
           </p>
         </div>
       </div>
@@ -20,7 +22,7 @@ function Header({ handleOpen }) {
               <i className="bi bi-list" id="btn-menu"></i>
             </div>
             <div className="header-left">
-              <a href="index.html" className="logo">
+              <a href="/" className="logo">
                 LOGO
               </a>
             </div>
@@ -28,7 +30,12 @@ function Header({ handleOpen }) {
               <nav className="navigation">
                 <ul className="menu-list">
                   <li className="menu-list-item">
-                    <a href="index.html" className="menu-link active">
+                    <a
+                      href="/"
+                      className={`menu-link ${
+                        window.location.pathname === "/" ? "active" : ""
+                      }`}
+                    >
                       Home
                       <i className="bi bi-chevron-down"></i>
                     </a>
@@ -65,7 +72,12 @@ function Header({ handleOpen }) {
                     </div>
                   </li>
                   <li className="menu-list-item megamenu-wrapper">
-                    <a href="shop.html" className="menu-link">
+                    <a
+                      href="/shop"
+                      className={`menu-link ${
+                        window.location.pathname === "/shop" ? "active" : ""
+                      }`}
+                    >
                       Shop
                       <i className="bi bi-chevron-down"></i>
                     </a>
@@ -172,12 +184,22 @@ function Header({ handleOpen }) {
                     </div>
                   </li>
                   <li className="menu-list-item">
-                    <a href="blog.html" className="menu-link">
+                    <a
+                      href="/blog"
+                      className={`menu-link ${
+                        window.location.pathname === "/blog" ? "active" : ""
+                      }`}
+                    >
                       Blog
                     </a>
                   </li>
                   <li className="menu-list-item">
-                    <a href="contact.html" className="menu-link">
+                    <a
+                      href="/contact"
+                      className={`menu-link ${
+                        window.location.pathname === "/contact" ? "active" : ""
+                      }`}
+                    >
                       Contact
                     </a>
                   </li>
@@ -187,7 +209,7 @@ function Header({ handleOpen }) {
             </div>
             <div className="header-right">
               <div className="header-right-links">
-                <a href="account.html" className="header-account">
+                <a href="/auth" className="header-account">
                   <i className="bi bi-person"></i>
                 </a>
                 <button className="search-button" onClick={handleOpen}>
@@ -197,9 +219,9 @@ function Header({ handleOpen }) {
                   <i className="bi bi-heart"></i>
                 </a>
                 <div className="header-cart">
-                  <a href="cart.html" className="header-cart-link">
+                  <a href="/cart" className="header-cart-link">
                     <i className="bi bi-bag"></i>
-                    <span className="header-cart-count">0</span>
+                    <span className="header-cart-count">{cart.length}</span>
                   </a>
                 </div>
               </div>

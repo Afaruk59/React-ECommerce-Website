@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "../../css/Cart.css";
+import CartContext from "../../context/CartProvider.jsx";
 function CartTotals() {
+  const { cart } = useContext(CartContext);
+  const [fastCargo, setFastCargo] = useState(false);
   return (
     <div className="cart-totals">
       <h2>Cart totals</h2>
@@ -9,7 +12,15 @@ function CartTotals() {
           <tr className="cart-subtotal">
             <th>Subtotal</th>
             <td>
-              <span id="subtotal">$316.00</span>
+              <span id="subtotal">
+                $
+                {(
+                  cart.reduce(
+                    (acc, item) => acc + item.price.newPrice * item.quantity,
+                    0
+                  ) + (fastCargo ? 15 : 0)
+                ).toFixed(2)}
+              </span>
             </td>
           </tr>
           <tr>
@@ -19,7 +30,13 @@ function CartTotals() {
                 <li>
                   <label>
                     Fast Cargo: $15.00
-                    <input type="checkbox" id="fast-cargo" />
+                    <input
+                      type="checkbox"
+                      id="fast-cargo"
+                      onChange={() => {
+                        setFastCargo(!fastCargo);
+                      }}
+                    />
                   </label>
                 </li>
                 <li>
@@ -31,7 +48,15 @@ function CartTotals() {
           <tr>
             <th>Total</th>
             <td>
-              <strong id="cart-total">$316.00</strong>
+              <strong id="cart-total">
+                $
+                {(
+                  cart.reduce(
+                    (acc, item) => acc + item.price.newPrice * item.quantity,
+                    0
+                  ) + (fastCargo ? 15 : 0)
+                ).toFixed(2)}
+              </strong>
             </td>
           </tr>
         </tbody>
