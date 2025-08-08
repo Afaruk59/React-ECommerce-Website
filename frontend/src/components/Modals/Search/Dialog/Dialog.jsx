@@ -1,17 +1,27 @@
 import "../../../../css/Dialog.css";
+import { useState } from "react";
 
 function Dialog({ isOpen, handleClose }) {
+  const [dontShowAgain, setDontShowAgain] = useState(false);
+
+  const handleCloseWithPreference = () => {
+    if (dontShowAgain) {
+      localStorage.setItem("hasSeenNewsletterDialog", "true");
+    }
+    handleClose();
+  };
+
   return (
     <div
       className={`modal-dialog ${isOpen ? "show" : ""}`}
-      onClick={handleClose}
+      onClick={handleCloseWithPreference}
     >
       <div
         className="modal-dialog-wrapper"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="modal-content">
-          <button className="modal-close" onClick={handleClose}>
+          <button className="modal-close" onClick={handleCloseWithPreference}>
             <i className="bi bi-x"></i>
           </button>
           <div className="modal-image">
@@ -30,7 +40,11 @@ function Dialog({ isOpen, handleClose }) {
                 <input type="text" placeholder="Enter Email Address Here" />
                 <button className="btn btn-primary">SUBSCRIBE</button>
                 <label>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    checked={dontShowAgain}
+                    onChange={(e) => setDontShowAgain(e.target.checked)}
+                  />
                   <span>Don't show this popup again</span>
                 </label>
               </form>

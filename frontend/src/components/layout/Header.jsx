@@ -4,6 +4,13 @@ import CartContext from "../../context/CartProvider.jsx";
 
 function Header({ handleOpen }) {
   const { cart } = useContext(CartContext);
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    window.location.href = "/";
+  };
+
   return (
     <header>
       <div className="global-notification">
@@ -215,14 +222,27 @@ function Header({ handleOpen }) {
                 <button className="search-button" onClick={handleOpen}>
                   <i className="bi bi-search"></i>
                 </button>
-                <a href="#">
-                  <i className="bi bi-heart"></i>
-                </a>
                 <div className="header-cart">
                   <a href="/cart" className="header-cart-link">
                     <i className="bi bi-bag"></i>
                     <span className="header-cart-count">{cart.length}</span>
                   </a>
+                </div>
+                <div>
+                  {user ? (
+                    <a
+                      href="/auth"
+                      className="header-account"
+                      onClick={handleLogout}
+                    >
+                      <i className="bi bi-person"></i>
+                      {user.username}
+                    </a>
+                  ) : (
+                    <a href="/auth" className="header-account">
+                      <i className="bi bi-person"></i>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

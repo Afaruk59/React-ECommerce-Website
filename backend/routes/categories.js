@@ -35,4 +35,26 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// update a category
+router.put("/:id", async (req, res) => {
+  try {
+    const category = await Category.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.status(200).json(category);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// delete a category
+router.delete("/:id", async (req, res) => {
+  try {
+    await Category.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "Category deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = router;

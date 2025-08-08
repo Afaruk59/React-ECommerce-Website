@@ -10,10 +10,15 @@ function MainLayout({ children }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
-    //3000ms
-    setTimeout(() => {
-      setIsDialogOpen(true);
-    }, 3000);
+    // Modal'ın daha önce gösterilip gösterilmediğini kontrol et
+    const hasSeenDialog = localStorage.getItem("hasSeenNewsletterDialog");
+
+    if (!hasSeenDialog) {
+      // İlk ziyaret ise 3 saniye sonra modal'ı göster
+      setTimeout(() => {
+        setIsDialogOpen(true);
+      }, 3000);
+    }
   }, []);
 
   const handleOpen = () => {
@@ -23,6 +28,8 @@ function MainLayout({ children }) {
   const handleClose = () => {
     setIsOpen(false);
     setIsDialogOpen(false);
+    // Modal kapatıldığında localStorage'a kaydet
+    localStorage.setItem("hasSeenNewsletterDialog", "true");
   };
 
   return (

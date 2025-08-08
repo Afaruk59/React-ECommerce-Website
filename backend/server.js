@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const app = express();
 const mainRoutes = require("./routes/index");
 const morgan = require("morgan");
+const cors = require("cors");
 const port = 5000;
 dotenv.config();
 
@@ -19,6 +20,7 @@ const connect = async () => {
 // middleware
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors());
 
 app.use("/api", mainRoutes);
 
