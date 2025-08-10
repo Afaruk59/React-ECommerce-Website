@@ -216,9 +216,6 @@ function Header({ handleOpen }) {
             </div>
             <div className="header-right">
               <div className="header-right-links">
-                <a href="/auth" className="header-account">
-                  <i className="bi bi-person"></i>
-                </a>
                 <button className="search-button" onClick={handleOpen}>
                   <i className="bi bi-search"></i>
                 </button>
@@ -230,19 +227,37 @@ function Header({ handleOpen }) {
                 </div>
                 <div>
                   {user ? (
+                    <a href="/auth" className="header-account">
+                      <img
+                        src={user.avatar}
+                        alt=""
+                        style={{
+                          width: "30px",
+                          height: "30px",
+                          borderRadius: "50%",
+                        }}
+                      />
+                    </a>
+                  ) : (
                     <a
                       href="/auth"
                       className="header-account"
-                      onClick={handleLogout}
+                      style={{ cursor: "pointer" }}
                     >
-                      <i className="bi bi-person"></i>
-                      {user.username}
-                    </a>
-                  ) : (
-                    <a href="/auth" className="header-account">
                       <i className="bi bi-person"></i>
                     </a>
                   )}
+                </div>
+                <div>
+                  {user ? (
+                    <a
+                      className="header-account"
+                      onClick={handleLogout}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <i className="bi bi-box-arrow-right"></i>
+                    </a>
+                  ) : null}
                 </div>
               </div>
             </div>

@@ -7,6 +7,10 @@ import CartPage from "./pages/CartPage";
 import BlogPage from "./pages/BlogPage";
 import BlogDetailsPage from "./pages/BlogDetailsPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
+import UserPage from "./pages/admin/UserPage";
+import CategoryPage from "./pages/admin/Categories/CategoryPage";
+import UpdateCategoryPage from "./pages/admin/Categories/UpdateCategoryPage";
+import AddCategoryPage from "./pages/admin/Categories/AddCategoryPage";
 import { Routes, Route } from "react-router-dom";
 function App() {
   return (
@@ -20,6 +24,15 @@ function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetailsPage />} />
         <Route path="/product/:id" element={<ProductDetailsPage />} />
+        <Route path="/admin/*">
+          <Route path="users" element={<UserPage />} />
+          <Route path="categories" element={<CategoryPage />} />
+          <Route
+            path="categories/update/:id"
+            element={<UpdateCategoryPage />}
+          />
+          <Route path="categories/create" element={<AddCategoryPage />} />
+        </Route>
       </Routes>
     </>
   );

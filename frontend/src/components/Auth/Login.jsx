@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import "../../css/Auth.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 
 function Login() {
-  const navigate = useNavigate();
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const [formData, setFormData] = useState({
     email: "",
@@ -26,7 +24,7 @@ function Login() {
       if (response.data.role === "admin") {
         window.location.href = "/admin";
       } else {
-        navigate("/");
+        window.location.href = "/";
       }
     } catch (error) {
       message.error(error.response.data.message);

@@ -15,6 +15,7 @@ const { Sider, Header, Content, Footer } = Layout;
 
 function AdminLayout({ children }) {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
   const items = [
     {
       key: "1",
@@ -123,28 +124,32 @@ function AdminLayout({ children }) {
     },
   ];
 
-  return (
-    <div className="admin-layout">
-      <Layout>
-        <Sider theme="dark" width={200}>
-          <Menu mode="vertical" style={{ height: "100vh" }} items={items} />
-        </Sider>
+  if (user.role == "admin") {
+    return (
+      <div className="admin-layout">
         <Layout>
-          <Header>
-            <div>
-              <h2 style={{ color: "white" }}>Admin Paneli</h2>
-            </div>
-          </Header>
-          <Content>
-            <div style={{ padding: "50px" }}>{children}</div>
-          </Content>
-          <Footer>
-            <p>Footer</p>
-          </Footer>
+          <Sider theme="dark" width={200}>
+            <Menu mode="vertical" style={{ height: "100vh" }} items={items} />
+          </Sider>
+          <Layout>
+            <Header>
+              <div>
+                <h2 style={{ color: "white" }}>Admin Paneli</h2>
+              </div>
+            </Header>
+            <Content>
+              <div style={{ padding: "50px" }}>{children}</div>
+            </Content>
+            <Footer>
+              <p>Footer</p>
+            </Footer>
+          </Layout>
         </Layout>
-      </Layout>
-    </div>
-  );
+      </div>
+    );
+  } else {
+    return (window.location.href = "/");
+  }
 }
 
 export default AdminLayout;
