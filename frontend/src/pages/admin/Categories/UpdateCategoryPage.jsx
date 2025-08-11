@@ -8,6 +8,7 @@ function UpdateCategoryPage() {
   const [category, setCategory] = useState(null);
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
+  const [form] = Form.useForm();
 
   const fetchCategory = async () => {
     const response = await axios.get(`${apiUrl}/api/categories/${id}`);
@@ -31,10 +32,15 @@ function UpdateCategoryPage() {
 
   useEffect(() => {
     fetchCategory();
+    form.setFieldsValue({
+      name: category?.name,
+      img: category?.img,
+    });
   }, []);
 
   return (
     <Form
+      form={form}
       layout="vertical"
       name="basic"
       labelCol={{ span: 8 }}
@@ -47,7 +53,7 @@ function UpdateCategoryPage() {
         name="name"
         rules={[{ required: true, message: "Please input your name!" }]}
       >
-        <Input placeholder={category?.name} />
+        <Input />
       </Form.Item>
 
       <Form.Item
@@ -55,7 +61,7 @@ function UpdateCategoryPage() {
         name="img"
         rules={[{ required: true, message: "Please input your image!" }]}
       >
-        <Input placeholder={category?.img} />
+        <Input />
       </Form.Item>
 
       <Form.Item>

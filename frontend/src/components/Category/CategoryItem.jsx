@@ -1,15 +1,16 @@
 import React from "react";
 import "../../css/CategoryItem.css";
-function CategoryItem() {
+function CategoryItem({ category }) {
   return (
     <li className="category-item">
       <a href="#">
         <img
-          src="img/categories/categories1.png"
+          src={category.img}
           alt=""
           className="category-image"
+          style={{ width: "200px" }}
         />
-        <span className="category-title">Smartphone</span>
+        <p className="category-title">{category.name}</p>
       </a>
     </li>
   );

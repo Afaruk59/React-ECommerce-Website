@@ -34,7 +34,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // update a product
-router.put("/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -46,7 +46,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // delete a product
-router.delete("/:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
   try {
     await Product.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: "Product deleted successfully" });

@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "../../css/Products.css";
 import ProductItem from "./ProductItem";
-import products from "../../data.json";
 import Slider from "react-slick";
+import axios from "axios";
 
 function Products() {
   const [productsData, setProductsData] = useState([]);
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    setProductsData(products);
+    const fetchProducts = async () => {
+      const response = await axios.get(`${apiUrl}/api/products`);
+      setProductsData(response.data);
+    };
+    fetchProducts();
   }, []);
 
   const settings = {
@@ -51,7 +56,7 @@ function Products() {
             <div className="glide__track">
               <Slider {...settings}>
                 {productsData.map((product) => (
-                  <ProductItem key={product.id} product={product} />
+                  <ProductItem key={product._id} product={product} />
                 ))}
               </Slider>
             </div>

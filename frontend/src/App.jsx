@@ -11,7 +11,14 @@ import UserPage from "./pages/admin/UserPage";
 import CategoryPage from "./pages/admin/Categories/CategoryPage";
 import UpdateCategoryPage from "./pages/admin/Categories/UpdateCategoryPage";
 import AddCategoryPage from "./pages/admin/Categories/AddCategoryPage";
+import AddProductPage from "./pages/admin/Products/AddProductPage";
+import ProductsPage from "./pages/admin/Products/ProductsPage";
+import UpdateProductPage from "./pages/admin/Products/UpdateProduct";
+import CouponsPage from "./pages/admin/Coupons/CouponsPage";
+import AddCoupon from "./pages/admin/Coupons/AddCoupon";
+import UpdateCoupon from "./pages/admin/Coupons/UpdateCoupon";
 import { Routes, Route } from "react-router-dom";
+
 function App() {
   return (
     <>
@@ -32,6 +39,12 @@ function App() {
             element={<UpdateCategoryPage />}
           />
           <Route path="categories/create" element={<AddCategoryPage />} />
+          <Route path="products" element={<ProductsPage />} />
+          <Route path="products/create" element={<AddProductPage />} />
+          <Route path="products/update/:id" element={<UpdateProductPage />} />
+          <Route path="coupons" element={<CouponsPage />} />
+          <Route path="coupons/create" element={<AddCoupon />} />
+          <Route path="coupons/update/:id" element={<UpdateCoupon />} />
         </Route>
       </Routes>
     </>

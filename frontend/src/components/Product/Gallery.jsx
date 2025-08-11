@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "../../css/Gallery.css";
-import products from "../../data.json";
 
-function Gallery({ id }) {
-  const [productData, setProductData] = useState(null);
+function Gallery({ product }) {
   const [activeImage, setActiveImage] = useState(0);
-
-  useEffect(() => {
-    setProductData(products.find((product) => product.id === parseInt(id)));
-  }, [id]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setActiveImage(
-        activeImage + 1 > productData?.img.thumbs.length - 1
-          ? 0
-          : activeImage + 1
+        activeImage + 1 > product?.img.length - 1 ? 0 : activeImage + 1
       );
     }, 3000);
     return () => clearTimeout(timer);
@@ -24,15 +16,7 @@ function Gallery({ id }) {
   return (
     <div className="product-gallery">
       <div className="single-image-wrapper">
-        <img
-          src={
-            productData?.img.thumbs[activeImage]
-              ? `/${productData.img.thumbs[activeImage]}`
-              : ""
-          }
-          id="single-image"
-          alt=""
-        />
+        <img src={`${product?.img[activeImage]}`} id="single-image" alt="" />
       </div>
       <div className="product-thumb">
         <div className="glide__track">
@@ -48,19 +32,15 @@ function Gallery({ id }) {
               alignItems: "center",
             }}
           >
-            {productData?.img.thumbs.map((thumb, index) => (
+            {product?.img.map((thumb, index) => (
               <li
-                key={`${id}-${index}`}
+                key={`${product._id}-${index}`}
                 className={`glide__slide ${
                   activeImage === index ? "glide__slide__active" : ""
                 }`}
                 onClick={() => setActiveImage(index)}
               >
-                <img
-                  width={100}
-                  src={`/${productData?.img.thumbs[index]}`}
-                  alt=""
-                />
+                <img width={100} src={`${product?.img[index]}`} alt="" />
               </li>
             ))}
           </ol>
@@ -78,8 +58,8 @@ function Gallery({ id }) {
             className="glide__arrow glide__arrow--right"
             onClick={() =>
               setActiveImage(
-                activeImage + 1 > productData?.img.thumbs.length - 1
-                  ? productData?.img.thumbs.length - 1
+                activeImage + 1 > product?.img.length - 1
+                  ? product?.img.length - 1
                   : activeImage + 1
               )
             }
