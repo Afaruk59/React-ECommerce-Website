@@ -1,39 +1,26 @@
 import React from "react";
 import "../../css/Reviews.css";
-function Comment() {
+function Comment({ review }) {
   return (
     <li className="comment-item">
       <div className="comment-avatar">
-        <img src="img/avatars/avatar1.jpg" alt="" />
+        <img src={review.user.avatar} alt="" />
       </div>
       <div className="comment-text">
         <ul className="comment-star">
-          <li>
-            <i className="bi bi-star-fill"></i>
-          </li>
-          <li>
-            <i className="bi bi-star-fill"></i>
-          </li>
-          <li>
-            <i className="bi bi-star-fill"></i>
-          </li>
-          <li>
-            <i className="bi bi-star-fill"></i>
-          </li>
-          <li>
-            <i className="bi bi-star-fill"></i>
-          </li>
+          {Array.from({ length: review.rating }).map((_, index) => (
+            <li key={index}>
+              <i className="bi bi-star-fill"></i>
+            </li>
+          ))}
         </ul>
         <div className="comment-meta">
-          <strong>admin</strong>
+          <strong>{review.user.name}</strong>
           <span>-</span>
-          <time>April 23, 2022</time>
+          <time>{review.createdAt.toLocaleDateString()}</time>
         </div>
         <div className="comment-description">
-          <p>
-            Sed perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium.
-          </p>
+          <p>{review.text}</p>
         </div>
       </div>
     </li>

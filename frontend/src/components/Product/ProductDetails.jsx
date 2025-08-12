@@ -1,23 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../../css/ProductDetails.css";
 import Breadcrumb from "../Modals/Search/Breadcrumb";
 import Gallery from "./Gallery";
 import ProductInfo from "./ProductInfo";
 import Tabs from "./Tabs";
-import axios from "axios";
 
-function ProductDetails({ id }) {
-  const [product, setProduct] = useState();
-  const apiUrl = import.meta.env.VITE_API_BASE_URL;
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const response = await axios.get(`${apiUrl}/api/products/${id}`);
-      setProduct(response.data);
-    };
-    fetchProduct();
-  }, []);
-
+function ProductDetails({ product }) {
   return (
     <section className="single-product">
       <div className="container">

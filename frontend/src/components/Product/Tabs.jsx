@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import "../../css/Tabs.css";
 import Reviews from "../Reviews/Reviews";
-import products from "../../data.json";
 
-function Tabs({ id }) {
-  const product = products.find((product) => product.id === parseInt(id));
+function Tabs({ product }) {
   const [activeTab, setActiveTab] = useState("desc");
+  if (!product) {
+    return (
+      <div className="product-info">
+        <div className="loading">Ürün bilgileri yükleniyor...</div>
+      </div>
+    );
+  }
   return (
     <div className="single-tabs">
       <ul className="tab-list">
@@ -44,25 +49,7 @@ function Tabs({ id }) {
           }`}
           id="desc"
         >
-          <p>
-            Quisque varius diam vel metus mattis, id aliquam diam rhoncus. Proin
-            vitae magna in dui finibus malesuada et at nulla. Morbi elit ex,
-            viverra vitae ante vel, blandit feugiat ligula. Fusce fermentum
-            iaculis nibh, at sodales leo maximus a. Nullam ultricies sodales
-            nunc, in pellentesque lorem mattis quis. Cras imperdiet est in nunc
-            tristique lacinia. Nullam aliquam mauris eu accumsan tincidunt.
-            Suspendisse velit ex, aliquet vel ornare vel, dignissim a tortor.
-          </p>
-          <br />
-          <p>
-            Quisque varius diam vel metus mattis, id aliquam diam rhoncus. Proin
-            vitae magna in dui finibus malesuada et at nulla. Morbi elit ex,
-            viverra vitae ante vel, blandit feugiat ligula. Fusce fermentum
-            iaculis nibh, at sodales leo maximus a. Nullam ultricies sodales
-            nunc, in pellentesque lorem mattis quis. Cras imperdiet est in nunc
-            tristique lacinia. Nullam aliquam mauris eu accumsan tincidunt.
-            Suspendisse velit ex, aliquet vel ornare vel, dignissim a tortor.
-          </p>
+          <p dangerouslySetInnerHTML={{ __html: product.description }}></p>
         </div>
         <div
           className={`tab-panel-information content ${
@@ -76,16 +63,27 @@ function Tabs({ id }) {
               <tr>
                 <th>Color</th>
                 <td>
-                  <p>
-                    Apple Red, Bio Blue, Sweet Orange, Blue, Green, Pink, Black,
-                    White
-                  </p>
+                  <div>
+                    {product.color.map((color, index) => (
+                      <span key={color}>
+                        {color}
+                        {index < product.color.length - 1 && ", "}
+                      </span>
+                    ))}
+                  </div>
                 </td>
               </tr>
               <tr>
                 <th>Size</th>
                 <td>
-                  <p>XXS, XS, S, M, L, XL, XXL</p>
+                  <div>
+                    {product.size.map((size, index) => (
+                      <span key={size}>
+                        {size}
+                        {index < product.size.length - 1 && ", "}
+                      </span>
+                    ))}
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -93,7 +91,7 @@ function Tabs({ id }) {
         </div>
         <Reviews
           activeTab={activeTab === "reviews" ? "content active" : "content"}
-          productId={id}
+          product={product}
         />
       </div>
     </div>

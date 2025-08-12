@@ -2,15 +2,17 @@ import React from "react";
 import "../../css/Reviews.css";
 import ReviewForm from "./ReviewForm";
 import Comment from "./Comment";
-function Reviews({ activeTab }) {
+function Reviews({ activeTab, product }) {
   return (
     <div className={`tab-panel-reviews ${activeTab}`}>
-      <h3>2 reviews for Basic Colored Sweatpants With Elastic Hems</h3>
+      <h3>
+        {product.reviews.length} reviews for {product.name}
+      </h3>
       <div className="comments">
         <ol className="comment-list">
-          <Comment />
-          <Comment />
-          <Comment />
+          {product.reviews.map((review) => (
+            <Comment key={review._id} review={review} />
+          ))}
         </ol>
       </div>
       {/* comment form start */}

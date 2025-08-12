@@ -67,7 +67,15 @@ function ProductsPage() {
       dataIndex: "img",
       key: "img",
       render: (text, record) => (
-        <img src={record.img[0]} alt="avatar" style={{ width: "100px" }} />
+        <img
+          src={
+            record.img && record.img[0]
+              ? record.img[0]
+              : "/img/products/product1/1.png"
+          }
+          alt="product"
+          style={{ width: "100px" }}
+        />
       ),
     },
     {
@@ -89,23 +97,36 @@ function ProductsPage() {
       title: "Sizes",
       dataIndex: "size",
       key: "size",
-      render: (text, record) => <div>{record.size.join(", ")}</div>,
+      render: (text, record) => (
+        <div>
+          {record.size && record.size.length > 0
+            ? record.size.join(", ")
+            : "No sizes"}
+        </div>
+      ),
     },
     {
       title: "Category",
       dataIndex: "category",
       key: "category",
-      render: (text, record) => (
-        <div>
-          {categories.find((category) => category._id === record.category).name}
-        </div>
-      ),
+      render: (text, record) => {
+        const category = categories.find(
+          (category) => category._id === record.category
+        );
+        return <div>{category ? category.name : "Category not found"}</div>;
+      },
     },
     {
       title: "Colors",
       dataIndex: "color",
       key: "color",
-      render: (text, record) => <div>{record.color.join(", ")}</div>,
+      render: (text, record) => (
+        <div>
+          {record.color && record.color.length > 0
+            ? record.color.join(", ")
+            : "No colors"}
+        </div>
+      ),
     },
     {
       title: "Action",

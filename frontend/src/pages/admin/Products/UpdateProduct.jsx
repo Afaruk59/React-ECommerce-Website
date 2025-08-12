@@ -30,9 +30,34 @@ function UpdateProductPage() {
 
   const handleUpdate = async (values) => {
     try {
+      // Convert string inputs to arrays
+      const formattedValues = {
+        ...values,
+        img: values.img
+          .split("\n")
+          .map((item) => item.trim())
+          .filter((item) => item),
+        color: values.color
+          .split("\n")
+          .map((item) => item.trim())
+          .filter((item) => item),
+        size: values.size
+          .split("\n")
+          .map((item) => item.trim())
+          .filter((item) => item),
+        price: {
+          current: values.currentPrice,
+          discount: values.discountPrice || 0,
+        },
+      };
+
+      // Remove the separate price fields
+      delete formattedValues.currentPrice;
+      delete formattedValues.discountPrice;
+
       const response = await axios.put(
         `${apiUrl}/api/products/update/${id}`,
-        values
+        formattedValues
       );
       setProduct(response.data);
       message.success("Product updated successfully");

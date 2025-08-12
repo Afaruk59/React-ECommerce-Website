@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "../../css/ProductInfo.css";
+import CartContext from "../../context/CartProvider";
 
 function ProductInfo({ product }) {
+  const { addToCart } = useContext(CartContext);
+  const [quantity, setQuantity] = useState(1);
   if (!product) {
     return (
       <div className="product-info">
@@ -36,7 +39,10 @@ function ProductInfo({ product }) {
         <s className="old-price">${product.price.discount}</s>
         <strong className="new-price">${product.price.current}</strong>
       </div>
-      <p className="product-description">{product.description}</p>
+      <p
+        className="product-description"
+        dangerouslySetInnerHTML={{ __html: product.description }}
+      ></p>
       <form className="variations-form">
         <div className="variations">
           <div className="colors">
@@ -44,12 +50,12 @@ function ProductInfo({ product }) {
               <span>Color</span>
             </div>
             <div className="colors-wrapper">
-              {product.color.map((color) => (
-                <div className="color-wrapper" key={color}>
-                  <label className={`${color}-color`}>
-                    <input type="radio" name="product-color" />
-                  </label>
-                </div>
+              {product.color.map((color, index) => (
+                <div
+                  key={`${color}-${index}`}
+                  className="color-wrapper"
+                  style={{ backgroundColor: color }}
+                ></div>
               ))}
             </div>
           </div>
@@ -64,11 +70,20 @@ function ProductInfo({ product }) {
             </div>
           </div>
           <div className="cart-button">
-            <input type="number" defaultValue="1" min="1" id="quantity" />
+            <input
+              type="number"
+              defaultValue="1"
+              min="1"
+              id="quantity"
+              onChange={(e) => setQuantity(e.target.value)}
+            />
             <button
               className="btn btn-lg btn-primary"
               id="add-to-cart"
               type="button"
+              onClick={() => {
+                addToCart(product, Number(quantity));
+              }}
             >
               Add to cart
             </button>

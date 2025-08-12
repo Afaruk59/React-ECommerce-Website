@@ -16,7 +16,7 @@ function CartTotals() {
                 $
                 {(
                   cart.reduce(
-                    (acc, item) => acc + item.price.newPrice * item.quantity,
+                    (acc, item) => acc + item.price.current * item.quantity,
                     0
                   ) + (fastCargo ? 15 : 0)
                 ).toFixed(2)}
@@ -52,7 +52,7 @@ function CartTotals() {
                 $
                 {(
                   cart.reduce(
-                    (acc, item) => acc + item.price.newPrice * item.quantity,
+                    (acc, item) => acc + item.price.current * item.quantity,
                     0
                   ) + (fastCargo ? 15 : 0)
                 ).toFixed(2)}

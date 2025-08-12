@@ -13,10 +13,13 @@ function CartItem({ item }) {
         ></i>
       </td>
       <td>{item.name}</td>
-      <td>${item.price.newPrice.toFixed(2)}</td>
+      <td>${item.price?.newPrice ? item.price.newPrice.toFixed(2) : "0.00"}</td>
       <td className="product-quantity">{item.quantity}</td>
       <td className="product-subtotal">
-        ${(item.price.newPrice * 1).toFixed(2)}
+        $
+        {item.price?.newPrice
+          ? (item.price.newPrice * item.quantity).toFixed(2)
+          : "0.00"}
       </td>
     </tr>
   );
