@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import "../../css/ProductInfo.css";
 import CartContext from "../../context/CartProvider";
+import { message } from "antd";
 
 function ProductInfo({ product }) {
   const { addToCart } = useContext(CartContext);
@@ -83,6 +84,7 @@ function ProductInfo({ product }) {
               type="button"
               onClick={() => {
                 addToCart(product, Number(quantity));
+                message.success(`${product.name} added to cart`);
               }}
             >
               Add to cart

@@ -18,7 +18,7 @@ function Reviews({ activeTab, product }) {
       {/* comment form start */}
       <div className="review-form-wrapper">
         <h2>Add a review</h2>
-        <ReviewForm />
+        <ReviewForm product={product} />
       </div>
       {/* comment form end */}
     </div>

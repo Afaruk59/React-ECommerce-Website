@@ -1,19 +1,24 @@
 const mongoose = require("mongoose");
 
-const ReviewSchema = new mongoose.Schema({
-  text: {
-    type: String,
-    required: true,
+const ReviewSchema = new mongoose.Schema(
+  {
+    text: {
+      type: String,
+      required: true,
+    },
+    rating: {
+      type: Number,
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
-  rating: {
-    type: Number,
-  },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 const productSchema = new mongoose.Schema({
   name: {

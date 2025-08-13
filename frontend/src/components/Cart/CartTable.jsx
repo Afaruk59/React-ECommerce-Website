@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import "../../css/Cart.css";
 import CartItem from "./CartItem";
 import CartContext from "../../context/CartProvider.jsx";
-import { Table } from "antd";
+import { Button, Table } from "antd";
 function CartTable() {
-  const { cart } = useContext(CartContext);
+  const { cart, removeFromCart } = useContext(CartContext);
   console.log(cart);
   const columns = [
     {
@@ -48,8 +48,28 @@ function CartTable() {
         </div>
       ),
     },
+    {
+      title: "Action",
+      dataIndex: "action",
+      key: "action",
+      render: (text, record) => (
+        <Button
+          type="primary"
+          danger
+          onClick={() => removeFromCart(record._id)}
+        >
+          Delete
+        </Button>
+      ),
+    },
   ];
-  return <Table dataSource={cart} columns={columns} />;
+  return (
+    <Table
+      dataSource={cart}
+      columns={columns}
+      rowKey={(record) => record._id}
+    />
+  );
 }
 
 export default CartTable;

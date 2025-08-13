@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { message } from "antd";
 
 const CartContext = createContext();
 
@@ -21,7 +22,9 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (id) => {
-    setCart(cart.filter((item) => item.id !== id));
+    const item = cart.find((item) => item._id === id);
+    setCart(cart.filter((item) => item._id !== id));
+    message.success(`${item.name} removed from cart`);
   };
 
   useEffect(() => {
