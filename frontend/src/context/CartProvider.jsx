@@ -27,6 +27,11 @@ export const CartProvider = ({ children }) => {
     message.success(`${item.name} removed from cart`);
   };
 
+  const clearCart = () => {
+    setCart([]);
+    localStorage.removeItem("cart");
+  };
+
   useEffect(() => {
     const cart = localStorage.getItem("cart");
     if (cart) {
@@ -39,7 +44,9 @@ export const CartProvider = ({ children }) => {
   }, [cart]);
 
   return (
-    <CartContext.Provider value={{ cart, setCart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{ cart, setCart, addToCart, removeFromCart, clearCart }}
+    >
       {children}
     </CartContext.Provider>
   );

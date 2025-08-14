@@ -110,6 +110,7 @@ function AdminLayout({ children }) {
       key: "12",
       icon: <ShoppingCartOutlined />,
       label: "Siparişler",
+      path: "/admin/orders",
       onClick: () => {
         navigate(`/admin/orders`);
       },
@@ -124,14 +125,49 @@ function AdminLayout({ children }) {
     },
   ];
 
+  const getActiveKey = () => {
+    const path = window.location.pathname;
+
+    for (const item of items) {
+      if (item.path === path) {
+        return item.key;
+      }
+      if (item.children) {
+        for (const child of item.children) {
+          if (child.path === path) {
+            return child.key;
+          }
+        }
+      }
+    }
+
+    return "1";
+  };
+
   if (user.role == "admin") {
     return (
       <div className="admin-layout">
         <Layout>
-          <Sider theme="dark" width={200}>
-            <Menu mode="vertical" style={{ height: "100vh" }} items={items} />
+          <Sider
+            theme="dark"
+            width={200}
+            style={{
+              position: "fixed",
+              height: "100vh",
+              left: 0,
+              top: 0,
+              bottom: 0,
+              zIndex: 1000,
+            }}
+          >
+            <Menu
+              mode="vertical"
+              style={{ height: "100vh" }}
+              items={items}
+              selectedKeys={[getActiveKey()]}
+            />
           </Sider>
-          <Layout>
+          <Layout style={{ marginLeft: 200 }}>
             <Header>
               <div>
                 <h2 style={{ color: "white" }}>Admin Paneli</h2>
@@ -141,7 +177,9 @@ function AdminLayout({ children }) {
               <div style={{ padding: "50px" }}>{children}</div>
             </Content>
             <Footer>
-              <p>Footer</p>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <p>Footer</p>
+              </div>
             </Footer>
           </Layout>
         </Layout>

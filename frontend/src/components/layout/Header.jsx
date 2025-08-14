@@ -222,7 +222,9 @@ function Header({ handleOpen }) {
                 <div className="header-cart">
                   <a href="/cart" className="header-cart-link">
                     <i className="bi bi-bag"></i>
-                    <span className="header-cart-count">{cart.length}</span>
+                    {cart.length > 0 && (
+                      <span className="header-cart-count">{cart.length}</span>
+                    )}
                   </a>
                 </div>
                 <div>
