@@ -37,21 +37,23 @@ const DashboardPage = () => {
     fetchOrders();
   }, []);
 
-  const customerData = paymentData.reduce((acc, order) => {
-    const date = new Date(order.created).toLocaleDateString("tr-TR");
-    const existingDate = acc.find((item) => item.name === date);
+  const customerData = paymentData
+    .sort((a, b) => new Date(a.created) - new Date(b.created))
+    .reduce((acc, order) => {
+      const date = new Date(order.created).toLocaleDateString("tr-TR");
+      const existingDate = acc.find((item) => item.name === date);
 
-    if (existingDate) {
-      existingDate.musteriSayisi++;
-    } else {
-      acc.push({
-        name: date,
-        musteriSayisi: 1,
-      });
-    }
+      if (existingDate) {
+        existingDate.musteriSayisi++;
+      } else {
+        acc.push({
+          name: date,
+          musteriSayisi: 1,
+        });
+      }
 
-    return acc;
-  }, []);
+      return acc;
+    }, []);
 
   const incomeChartData = paymentData
     .sort((a, b) => new Date(a.created) - new Date(b.created))
@@ -71,7 +73,7 @@ const DashboardPage = () => {
     <div>
       <Row gutter={16}>
         <Col span={12}>
-          <Card>
+          <Card hoverable>
             <Statistic
               title="Toplam Müşteri Sayısı"
               value={paymentData.length}
@@ -79,7 +81,7 @@ const DashboardPage = () => {
           </Card>
         </Col>
         <Col span={12}>
-          <Card>
+          <Card hoverable>
             <Statistic
               title="Toplam Gelir"
               value={paymentData
@@ -93,7 +95,7 @@ const DashboardPage = () => {
 
       <Row gutter={16}>
         <Col span={12}>
-          <Card style={{ marginTop: "20px" }}>
+          <Card hoverable style={{ marginTop: "20px" }}>
             <h2>Toplam Gelir Grafiği</h2>
             <ResponsiveContainer width="100%" height={400}>
               <LineChart
@@ -119,7 +121,7 @@ const DashboardPage = () => {
         </Col>
 
         <Col span={12}>
-          <Card style={{ marginTop: "20px" }}>
+          <Card hoverable style={{ marginTop: "20px" }}>
             <h2>Son Aydaki Müşteri Artışı</h2>
             <ResponsiveContainer width="100%" height={400}>
               <LineChart

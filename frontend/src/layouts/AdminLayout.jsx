@@ -8,6 +8,7 @@ import {
   DashboardOutlined,
   ShoppingCartOutlined,
   AppstoreOutlined,
+  EditOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
@@ -21,6 +22,7 @@ function AdminLayout({ children }) {
       key: "1",
       icon: <DashboardOutlined />,
       label: "Dashboard",
+      path: "/admin",
       onClick: () => {
         navigate(`/admin`);
       },
@@ -29,7 +31,7 @@ function AdminLayout({ children }) {
       key: "2",
       icon: <AppstoreOutlined />,
       label: "Kategoriler",
-      path: "/",
+      path: "/admin/categories",
       children: [
         {
           key: "3",
@@ -77,7 +79,6 @@ function AdminLayout({ children }) {
       key: "8",
       icon: <BarcodeOutlined />,
       label: "Kuponlar",
-      path: "/admin/coupons",
       children: [
         {
           key: "9",
@@ -99,6 +100,30 @@ function AdminLayout({ children }) {
     },
     {
       key: "11",
+      icon: <EditOutlined />,
+      label: "Bloglar",
+      path: "/admin/blogs",
+      children: [
+        {
+          key: "12",
+          label: "Blog Listesi",
+          path: "/admin/blogs",
+          onClick: () => {
+            navigate(`/admin/blogs`);
+          },
+        },
+        {
+          key: "13",
+          label: "Yeni Blog Oluştur",
+          path: "/admin/blogs/create",
+          onClick: () => {
+            navigate("/admin/blogs/create");
+          },
+        },
+      ],
+    },
+    {
+      key: "14",
       icon: <UserOutlined />,
       label: "Kullanıcı Listesi",
       path: "/admin/users",
@@ -107,7 +132,7 @@ function AdminLayout({ children }) {
       },
     },
     {
-      key: "12",
+      key: "15",
       icon: <ShoppingCartOutlined />,
       label: "Siparişler",
       path: "/admin/orders",
@@ -116,14 +141,32 @@ function AdminLayout({ children }) {
       },
     },
     {
-      key: "13",
+      key: "16",
       icon: <RollbackOutlined />,
       label: "Ana Sayfaya Git",
       onClick: () => {
-        navigate(`/`);
+        window.location.href = "/";
       },
     },
   ];
+
+  const getTitle = () => {
+    const path = window.location.pathname;
+
+    for (const item of items) {
+      if (item.path === path) {
+        return item.label;
+      }
+      if (item.children) {
+        for (const child of item.children) {
+          if (child.path === path) {
+            return child.label;
+          }
+        }
+      }
+    }
+    return "Admin Panel";
+  };
 
   const getActiveKey = () => {
     const path = window.location.pathname;
@@ -167,10 +210,10 @@ function AdminLayout({ children }) {
               selectedKeys={[getActiveKey()]}
             />
           </Sider>
-          <Layout style={{ marginLeft: 200 }}>
+          <Layout style={{ marginLeft: 200, minHeight: "100vh" }}>
             <Header>
               <div>
-                <h2 style={{ color: "white" }}>Admin Paneli</h2>
+                <h2 style={{ color: "white" }}>{getTitle()}</h2>
               </div>
             </Header>
             <Content>

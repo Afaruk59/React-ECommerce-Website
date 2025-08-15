@@ -21,6 +21,10 @@ import Success from "./pages/Success";
 import OrdersPage from "./pages/admin/OrderPage";
 import DashboardPage from "./pages/admin/DashboardPage";
 import { Routes, Route } from "react-router-dom";
+import UserInfos from "./pages/UserPage";
+import BlogListPage from "./pages/admin/Blogs/BlogListPage";
+import AddBlogPage from "./pages/admin/Blogs/AddBlogPage";
+import UpdateBlogPage from "./pages/admin/Blogs/UpdateBlogPage";
 
 function App() {
   return (
@@ -35,6 +39,7 @@ function App() {
         <Route path="/blog/:id" element={<BlogDetailsPage />} />
         <Route path="/product/:id" element={<ProductDetailsPage />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/user" element={<UserInfos />} />
         <Route path="/admin/*">
           <Route index element={<DashboardPage />} />
           <Route path="users" element={<UserPage />} />
@@ -52,6 +57,9 @@ function App() {
           <Route path="coupons/update/:id" element={<UpdateCoupon />} />
           <Route path="orders" element={<OrdersPage />} />
           <Route path="dashboard" element={<DashboardPage />} />
+          <Route path="blogs" element={<BlogListPage />} />
+          <Route path="blogs/create" element={<AddBlogPage />} />
+          <Route path="blogs/update/:id" element={<UpdateBlogPage />} />
         </Route>
       </Routes>
     </>

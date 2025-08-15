@@ -39,7 +39,6 @@ function CartTotals({ discount }) {
       } else {
         message.error("Payment failed");
       }
-      clearCart();
     } catch (error) {
       message.error("Order failed to add");
       console.log(error);

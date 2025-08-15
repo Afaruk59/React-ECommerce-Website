@@ -1,11 +1,11 @@
 import React from "react";
 import "../../css/Brands.css";
 
-function BrandItem() {
+function BrandItem({ src }) {
   return (
     <li className="brand-item">
       <a href="#">
-        <img src="img/brands/brand1.png" alt="" />
+        <img src={src} alt="" />
       </a>
     </li>
   );

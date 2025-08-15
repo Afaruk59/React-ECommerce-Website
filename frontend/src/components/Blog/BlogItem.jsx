@@ -1,23 +1,31 @@
 import React from "react";
 import "../../css/Blogs.css";
+import { Card } from "antd";
+import { useNavigate } from "react-router-dom";
 
-function BlogItem() {
+function BlogItem({ blog }) {
+  const navigate = useNavigate();
+
   return (
     <li className="blog-item">
-      <a href="#" className="blog-image">
-        <img src="img/blogs/blog1.jpg" alt="" />
-      </a>
-      <div className="blog-info">
+      <Card
+        onClick={() => {
+          navigate(`/blog/${blog._id}`);
+        }}
+        hoverable
+        className="blog-card"
+        cover={<img src={blog.img} alt="" />}
+      >
         <div className="blog-info-top">
-          <span>25 Feb, 2021 </span>-<span>0 Comments</span>
+          <span>{blog.createdAt.split("T")[0]}</span> <span>0 Comments</span>
         </div>
         <div className="blog-info-center">
-          <a href="#">Aliquam hendrerit mi metus</a>
+          <a>{blog.title}</a>
         </div>
         <div className="blog-info-bottom">
-          <a href="#">Read More</a>
+          <a>Read More</a>
         </div>
-      </div>
+      </Card>
     </li>
   );
 }

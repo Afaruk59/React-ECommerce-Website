@@ -229,7 +229,7 @@ function Header({ handleOpen }) {
                 </div>
                 <div>
                   {user ? (
-                    <a href="/auth" className="header-account">
+                    <a href="/user" className="header-account">
                       <img
                         src={user.avatar}
                         alt=""

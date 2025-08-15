@@ -3,10 +3,10 @@ import { Result, Button } from "antd";
 import CartContext from "../context/CartProvider";
 
 function Success() {
-  const { setCart } = useContext(CartContext);
+  const { clearCart } = useContext(CartContext);
 
   useEffect(() => {
-    setCart([]);
+    clearCart();
   }, []);
 
   return (

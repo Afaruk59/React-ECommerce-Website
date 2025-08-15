@@ -1,23 +1,14 @@
 import React, { useState } from "react";
 import "../../css/Auth.css";
 import axios from "axios";
-import { message } from "antd";
+import { message, Input, Checkbox, Form, Button } from "antd";
 
 function Login() {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (values) => {
     try {
-      const response = await axios.post(`${apiUrl}/api/auth/login`, formData);
+      const response = await axios.post(`${apiUrl}/api/auth/login`, values);
       console.log(response);
       message.success("Giriş başarılı!");
       localStorage.setItem("user", JSON.stringify(response.data));
@@ -34,46 +25,35 @@ function Login() {
   return (
     <div className="account-column">
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            <span>
-              Username or email address <span className="required">*</span>
-            </span>
-            <input
-              type="text"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            <span>
-              Password <span className="required">*</span>
-            </span>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </label>
-        </div>
+      <Form onFinish={handleSubmit} layout="vertical" name="login">
+        <Form.Item
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Please input your username or email address!",
+            },
+          ]}
+        >
+          <Input name="email" placeholder="Username or email address" />
+        </Form.Item>
+        <Form.Item
+          name="password"
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
+          <Input.Password name="password" placeholder="Password" />
+        </Form.Item>
         <p className="remember">
           <label>
-            <input type="checkbox" />
+            <Checkbox type="checkbox" />
             <span>Remember me</span>
           </label>
-          <button className="btn btn-sm" type="submit">
-            Login
-          </button>
+          <Button htmlType="submit">Login</Button>
         </p>
         <a href="#" className="form-link">
           Lost your password?
         </a>
-      </form>
+      </Form>
     </div>
   );
 }
