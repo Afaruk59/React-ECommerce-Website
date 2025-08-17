@@ -2,11 +2,12 @@ import React from "react";
 import "../../css/Reviews.css";
 import ReviewForm from "./ReviewForm";
 import Comment from "./Comment";
-function Reviews({ activeTab, product }) {
+function Reviews({ activeTab, product, type = "product" }) {
   return (
     <div className={`tab-panel-reviews ${activeTab}`}>
       <h3>
-        {product.reviews.length} reviews for {product.name}
+        {product.reviews.length} reviews for{" "}
+        {type === "blog" ? product.title : product.name}
       </h3>
       <div className="comments">
         <ol className="comment-list">
@@ -18,7 +19,7 @@ function Reviews({ activeTab, product }) {
       {/* comment form start */}
       <div className="review-form-wrapper">
         <h2>Add a review</h2>
-        <ReviewForm product={product} />
+        <ReviewForm product={product} type={type} />
       </div>
       {/* comment form end */}
     </div>

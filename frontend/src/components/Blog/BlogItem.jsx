@@ -9,6 +9,14 @@ function BlogItem({ blog }) {
   return (
     <li className="blog-item">
       <Card
+        style={{
+          minHeight: "450px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+        }}
         onClick={() => {
           navigate(`/blog/${blog._id}`);
         }}

@@ -3,7 +3,7 @@ import "../../css/Reviews.css";
 import axios from "axios";
 import { message } from "antd";
 
-function ReviewForm({ product }) {
+function ReviewForm({ product, type = "product" }) {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [cookies, setCookies] = useState(false);
@@ -31,10 +31,12 @@ function ReviewForm({ product }) {
     };
     if (user) {
       try {
-        const response = await axios.put(
-          `${apiUrl}/api/products/update/${product._id}`,
-          reviewData
-        );
+        const endpoint =
+          type === "blog"
+            ? `${apiUrl}/api/blogs/update/${product._id}`
+            : `${apiUrl}/api/products/update/${product._id}`;
+
+        const response = await axios.put(endpoint, reviewData);
         message.success("Review added successfully");
         console.log(response);
       } catch (error) {
