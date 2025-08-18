@@ -29,7 +29,7 @@ function Slider() {
   }, [currentSlide]);
 
   return (
-    <>
+    <div>
       <section className="slider">
         <div className="slider-elements">
           {currentSlide === 0 && <SliderItem index={0} />}
@@ -65,7 +65,7 @@ function Slider() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

@@ -16,7 +16,7 @@ function HomePage() {
       <Categories />
       <Products />
       <Campaigns />
-      <Blogs />
+      <Blogs blogCount={3} />
       <Brands />
       <CampaignSingle />
     </>

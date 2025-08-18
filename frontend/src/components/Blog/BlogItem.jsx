@@ -22,10 +22,16 @@ function BlogItem({ blog }) {
         }}
         hoverable
         className="blog-card"
-        cover={<img src={blog.img} alt="" />}
+        cover={
+          <div style={{ height: "200px", width: "100%", overflow: "hidden" }}>
+            <img style={{ width: "100%" }} src={blog.img} alt="" />
+          </div>
+        }
       >
         <div className="blog-info-top">
-          <span>{blog.createdAt.split("T")[0]}</span> <span>0 Comments</span>
+          <span>{blog.createdAt.split("T")[0]}</span>
+          {" | "}
+          <span>{blog.reviews.length} Comments</span>
         </div>
         <div className="blog-info-center">
           <a>{blog.title}</a>

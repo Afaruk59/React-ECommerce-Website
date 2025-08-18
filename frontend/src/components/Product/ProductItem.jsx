@@ -43,7 +43,7 @@ function ProductItem({ product }) {
         <span className="product-discount">-{product.price.discount}%</span>
         <div className="product-links">
           <button
-            onClick={() => addToCart(product)}
+            onClick={() => addToCart(product, 1)}
             disabled={cart.some((item) => item._id === product._id)}
           >
             <i className="bi bi-basket-fill"></i>

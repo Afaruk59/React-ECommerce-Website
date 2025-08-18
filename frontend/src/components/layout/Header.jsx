@@ -30,7 +30,11 @@ function Header({ handleOpen }) {
             </div>
             <div className="header-left">
               <a href="/" className="logo">
-                LOGO
+                <img
+                  src="https://cdn.vatanbilgisayar.com/images/frontend/assets/sitelogo.svg"
+                  alt="logo"
+                  height={40}
+                />
               </a>
             </div>
             <div className="header-center" id="sidebar">

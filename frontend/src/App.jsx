@@ -25,6 +25,7 @@ import UserInfos from "./pages/UserPage";
 import BlogListPage from "./pages/admin/Blogs/BlogListPage";
 import AddBlogPage from "./pages/admin/Blogs/AddBlogPage";
 import UpdateBlogPage from "./pages/admin/Blogs/UpdateBlogPage";
+import CategoryFilterPage from "./pages/CategoryFilterPage";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/product/:id" element={<ProductDetailsPage />} />
         <Route path="/success" element={<Success />} />
         <Route path="/user" element={<UserInfos />} />
+        <Route path="/category/:id" element={<CategoryFilterPage />} />
         <Route path="/admin/*">
           <Route index element={<DashboardPage />} />
           <Route path="users" element={<UserPage />} />

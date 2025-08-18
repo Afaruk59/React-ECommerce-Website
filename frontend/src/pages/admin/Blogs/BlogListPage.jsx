@@ -54,7 +54,7 @@ function BlogListPage() {
       key: "author",
       render: (text, record) => (
         <div>
-          <h3>{record.author}</h3>
+          <b>{record.author}</b>
         </div>
       ),
     },
